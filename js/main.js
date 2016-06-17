@@ -5,16 +5,25 @@ new Vue({
         question: 0,
         proposition: {},
         reponses: [],
-        choix: '',
+        next: false,
         results: false
+    },
+    computed: {
+        nextCheck() {
+            if (this.next)
+                return true;
+            return false;
+        }
     },
     ready() {
         this.getData(this.question);
     },
     methods: {
         getData(question) {
+            this.next = false;
             //if previous button is hit show stored response
             if (this.reponses[question]) {
+                this.next = true;
                 this.showChoice(question);
                 return this.proposition = this.reponses[question];
             }
@@ -36,9 +45,8 @@ new Vue({
             setTimeout(() => {
                 let inputs = document.getElementsByTagName("input");
                 for (let input of inputs) {
-                    if (input.value == this.reponses[question].choix) {
+                    if (input.value == this.reponses[question].choix)
                         input.setAttribute("checked", "checked");
-                    }
                 }
             }, 10);
         },
