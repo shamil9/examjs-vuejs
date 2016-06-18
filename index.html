@@ -33,7 +33,7 @@
                 v-if="question < 4"
                 :disabled="!nextCheck">Suivante</button>
 
-            <button href="" id="next" class="btn btn-danger"
+            <button href="" id="validate" class="btn btn-danger"
                 @click.prevent="showResults"
                 v-if="question === 4 && nextCheck">Valider</button>
         </div>
